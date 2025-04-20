@@ -11,9 +11,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Modifier.shadow(
+    blurRadius: Dp = ShadowDefaults.blurRadius,
     color: Color = ShadowDefaults.color,
     shape: Shape = RectangleShape,
-    blurRadius: Dp = ShadowDefaults.blurRadius,
     spread: Dp = ShadowDefaults.spread,
     translationX: Dp = 0.dp,
     translationY: Dp = 0.dp,

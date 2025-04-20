@@ -15,12 +15,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Modifier.shadowVerticalGradient(
-    colors: List<Color> = listOf(
-        ShadowDefaults.color,
-        ShadowDefaults.color
-    ),
-    shape: Shape = RectangleShape,
+    colors: List<Color>,
     blurRadius: Dp = ShadowDefaults.blurRadius,
+    shape: Shape = RectangleShape,
     spread: Dp = ShadowDefaults.spread,
     translationX: Dp = 0.dp,
     translationY: Dp = 0.dp,
