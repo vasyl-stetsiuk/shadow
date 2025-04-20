@@ -1,33 +1,89 @@
-# Gradle files
-.gradle/
-build/
+# Build and output directories
+/build
+/captures
+.externalNativeBuild
+.cxx
+**/build/
+**/captures/
+**/outputs/
+**/intermediates/
+**/generated/
 
-# Local configuration file (sdk path, etc)
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Dex and class files
+*.dex
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Local configuration
 local.properties
 
-# Log/OS Files
-*.log
+# Eclipse project files
+.classpath
+.project
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
+# macOS system files
+.DS_Store
 
-# IntelliJ
-*.iml
+# Gradle files
+.gradle/
+**/gradle/wrapper/dists/
+**/gradle/caches/
+**/gradle/daemon/
+
+# Signing keys (avoid leaking secrets!)
+**/keystore.jks
+**/debug.keystore
+
+# Android Studio/IntelliJ IDEA files
 .idea/
+*.iml
 misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
+tasks.xml
+workspace.xml
+*.iws
+# Keep code styles
+!/.idea/codeStyles
+/.idea/codeStyles/*
+!/.idea/codeStyles/Project.xml
+!/.idea/codeStyles/codeStyleConfig.xml
 
-# Keystore files
-*.jks
-*.keystore
+# Logs and temp files
+*.log
+*.swp
+*.swo
+*.bak
+*.tmp
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# Build artifacts
+**/app/build/
+**/app/release/
 
-# Android Profiling
-*.hprof
+# Test reports
+**/test-results/
+**/androidTest-results/
+
+# Ignore NDK intermediate files
+obj/
+*.so
+
+# Fastlane metadata
+fastlane/report.xml
+fastlane/metadata/
+
+# Jetpack Compose preview cache
+.compose-cache/
+
+# Kotlin temporary files (excluding build.gradle.kts)
+*.kts~
+
+# Kotlin
+.kotlin
