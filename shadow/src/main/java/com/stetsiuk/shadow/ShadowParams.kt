@@ -8,7 +8,7 @@ data class ShadowBundle(
 )
 
 data class ShadowParams(
-    val fillStyle: FillStyle = ShadowDefaults.fillStyle,
+    val fillStyle: ShadowFillStyle = ShadowDefaults.fillStyle,
     val blurRadius: Dp = ShadowDefaults.blurRadius,
     val spread: Dp = ShadowDefaults.spread,
     val translationX: Dp = ShadowDefaults.translationX,

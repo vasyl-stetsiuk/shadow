@@ -51,7 +51,7 @@ fun BrushShadowPreview() {
         Box(
             modifier = Modifier
                 .graphicsLayer {
-                    this.translationY = - translationY.toPx()
+                    this.translationY = -translationY.toPx()
                 }
                 .size(200.dp)
                 .shadowVerticalGradient(
