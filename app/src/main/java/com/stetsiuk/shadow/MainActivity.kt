@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                         .background(MaterialTheme.colorScheme.surface),
                     contentAlignment = Alignment.Center
                 ) {
-                    BrushShadowPreview()
+                    ShadowShader2Preview()
                 }
             }
         }

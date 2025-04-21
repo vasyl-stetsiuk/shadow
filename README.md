@@ -6,10 +6,10 @@ Easily apply smooth, dynamic shadows to your composables with simple `Modifier` 
 
 ---
 
-## Preview
+## 👀 Preview
 ![Shadow Preview](media/preview.gif)
 
-## Installation
+## 📦 Installation
 
 ### Step 1: Add JitPack to your `settings.gradle`
 
@@ -32,9 +32,9 @@ dependencies {
 ```
 [![](https://jitpack.io/v/vasyl-stetsiuk/shadow.svg)](https://jitpack.io/#vasyl-stetsiuk/shadow)
 
-## Usage
+## 🚀 Usage
 
-### With color
+### ✅ With color
 
 ```kotlin
 val shape = RoundedCornerShape(24.dp)
@@ -53,14 +53,14 @@ Spacer(
 )
 ```
 
-### With shader (vertical gradient in this case)
+### 🌈 With Shader (Vertical Gradient Example)
 
 ```kotlin
 val shape = RoundedCornerShape(24.dp)
 Spacer(
     modifier = Modifier
         .shadow(
-            fillStyle = ShadowFillStyle.WithShader{
+            fillStyle = ShadowFillStyle.WithShader {
                 LinearGradientShader(
                     from = Offset(size.width / 2, 0f),
                     to = Offset(size.width / 2, size.height),
@@ -78,7 +78,7 @@ Spacer(
 )
 ```
 
-### Inside DrawScope
+### 🛠️ Direct Usage in DrawScope
 
 ```kotlin
 val shape = RoundedCornerShape(24.dp)
@@ -99,7 +99,7 @@ Spacer(
 )
   ```      
 
-## Credits
+## 🙌 Credits
 
 Made by @vasyl-stetsiuk
 

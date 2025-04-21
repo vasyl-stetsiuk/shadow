@@ -5,8 +5,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 object ShadowDefaults {
-    val color: Color = Color.Black.copy(0.10f)
-    val fillStyle: ShadowFillStyle = ShadowFillStyle.WithColor(color)
+    val fillStyle: ShadowFillStyle = ShadowFillStyle.WithColor(
+        Color.Black.copy(0.10f)
+    )
     val blurRadius: Dp = 24.dp
     val spread: Dp = 4.dp
     val translationX: Dp = 0.dp
