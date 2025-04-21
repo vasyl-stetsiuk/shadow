@@ -62,7 +62,7 @@ publishing {
                 from(components["release"])
                 groupId = "com.github.vasyl-stetsiuk"
                 artifactId = "shadow"
-                version = "1.0.3"
+                version = "1.0.2"
             }
         }
     }
