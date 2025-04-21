@@ -15,6 +15,28 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+
+fun Modifier.shadow(
+    fillStyle: ShadowFillStyle = ShadowDefaults.fillStyle,
+    blurRadius: Dp = ShadowDefaults.blurRadius,
+    shape: Shape = RectangleShape,
+    spread: Dp = ShadowDefaults.spread,
+    translationX: Dp = 0.dp,
+    translationY: Dp = 0.dp,
+) = shadow(
+    ShadowParams(fillStyle, blurRadius, spread, translationX, translationY, shape)
+)
+
+// Can default params be provided
+fun Modifier.shadow(
+    params: ShadowParams,
+    defaultShape: Shape = RectangleShape,
+) = shadow(
+    bundle = ShadowBundle(listOf(params)),
+    defaultShape = defaultShape
+)
 
 fun Modifier.shadow(
     bundle: ShadowBundle,
@@ -32,23 +54,8 @@ fun Modifier.shadow(
     }
 }
 
-// Can default params be provided
-fun Modifier.shadow(
-    params: ShadowParams,
-    defaultShape: Shape = RectangleShape,
-) = drawBehind {
-    drawShadow(
-        fillStyle = params.fillStyle,
-        shape = params.shape ?: defaultShape,
-        blurRadius = params.blurRadius.toPx(),
-        spread = params.spread.toPx(),
-        translationX = params.translationX.toPx(),
-        translationY = params.translationY.toPx(),
-    )
-}
-
 fun DrawScope.drawShadow(
-    fillStyle: FillStyle,
+    fillStyle: ShadowFillStyle,
     shape: Shape,
     blurRadius: Float,
     spread: Float,
@@ -70,7 +77,7 @@ fun DrawScope.drawShadow(
             if (blurRadius > 0f) {
                 maskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
             }
-            fillBackground(fillStyle)
+            fillBackground(fillStyle, this@drawShadow)
         }
 
         withTransform(
@@ -89,19 +96,24 @@ fun DrawScope.drawShadow(
     }
 }
 
-fun NativePaint.fillBackground(fillStyle: FillStyle) {
+private fun NativePaint.fillBackground(
+    fillStyle: ShadowFillStyle,
+    drawScope: DrawScope
+) {
     when (fillStyle) {
-        is FillStyle.WithColor -> {
+        is ShadowFillStyle.WithColor -> {
             color = fillStyle.color.toArgb()
         }
 
-        is FillStyle.WithShader -> {
-            shader = fillStyle.shader
+        is ShadowFillStyle.WithShader -> {
+            shader = fillStyle.shader.invoke(drawScope)
         }
     }
 }
 
-sealed interface FillStyle {
-    data class WithColor(val color: Color) : FillStyle
-    data class WithShader(val shader: Shader) : FillStyle
+sealed interface ShadowFillStyle {
+    data class WithColor(val color: Color) : ShadowFillStyle
+    data class WithShader(
+        val shader: DrawScope.() -> Shader
+    ) : ShadowFillStyle
 }
