@@ -19,10 +19,8 @@ kotlin {
         }
     }
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    )
+    iosArm64()
+    iosSimulatorArm64()
 
     sourceSets {
         androidMain.dependencies {
@@ -91,8 +89,7 @@ publishing {
     publications {
         withType<MavenPublication> {
             groupId = "com.github.vasyl-stetsiuk"
-            artifactId = "shadow"
-            version = "1.0.3"
+            version = "1.0.5"
         }
     }
 }
