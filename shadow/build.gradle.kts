@@ -11,10 +11,9 @@ plugins {
     id("maven-publish")
 }
 
-val publishVariantName = "release"
-
 kotlin {
     androidTarget {
+        publishLibraryVariants("release")
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -77,7 +76,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     publishing {
-        singleVariant(publishVariantName) {
+        singleVariant("release") {
             withSourcesJar()
             withJavadocJar()
         }
@@ -90,13 +89,10 @@ dependencies {
 
 publishing {
     publications {
-        register<MavenPublication>(publishVariantName) {
-            afterEvaluate {
-                from(components[publishVariantName])
-                groupId = "com.github.vasyl-stetsiuk"
-                artifactId = "shadow"
-                version = "1.0.3"
-            }
+        withType<MavenPublication> {
+            groupId = "com.github.vasyl-stetsiuk"
+            artifactId = "shadow"
+            version = "1.0.3"
         }
     }
 }
