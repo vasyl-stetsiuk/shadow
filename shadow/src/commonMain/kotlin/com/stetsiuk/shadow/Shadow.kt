@@ -1,11 +1,9 @@
 package com.stetsiuk.shadow
 
-import android.graphics.BlurMaskFilter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.NativePaint
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shader
@@ -14,9 +12,10 @@ import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.drawscope.withTransform
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+internal expect fun Paint.applyBlur(blurRadius: Float)
 
 fun Modifier.shadow(
     fillStyle: ShadowFillStyle = ShadowDefaults.fillStyle,
@@ -29,7 +28,6 @@ fun Modifier.shadow(
     ShadowParams(fillStyle, blurRadius, spread, translationX, translationY, shape)
 )
 
-// Can default params be provided
 fun Modifier.shadow(
     params: ShadowParams,
     defaultShape: Shape = RectangleShape,
@@ -64,7 +62,7 @@ fun DrawScope.drawShadow(
 ) {
     this.drawIntoCanvas {
         val paint = Paint()
-        val frameworkPaint = paint.asFrameworkPaint()
+
         val shadowSize = Size(
             width = size.width + (spread * 2),
             height = size.height + (spread * 2)
@@ -73,11 +71,10 @@ fun DrawScope.drawShadow(
         val scaleY = shadowSize.height / size.height
         val outline = shape.createOutline(size, layoutDirection, this)
 
-        frameworkPaint.apply {
-            if (blurRadius > 0f) {
-                maskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
-            }
-            fillBackground(fillStyle, this@drawShadow)
+        paint.fillBackground(fillStyle, this@drawShadow)
+
+        if (blurRadius > 0f) {
+            paint.applyBlur(blurRadius)
         }
 
         withTransform(
@@ -96,17 +93,17 @@ fun DrawScope.drawShadow(
     }
 }
 
-private fun NativePaint.fillBackground(
+private fun Paint.fillBackground(
     fillStyle: ShadowFillStyle,
     drawScope: DrawScope
 ) {
     when (fillStyle) {
         is ShadowFillStyle.WithColor -> {
-            color = fillStyle.color.toArgb()
+            this.color = fillStyle.color
         }
 
         is ShadowFillStyle.WithShader -> {
-            shader = fillStyle.shader.invoke(drawScope)
+            this.shader = fillStyle.shader.invoke(drawScope)
         }
     }
 }

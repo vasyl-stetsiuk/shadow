@@ -21,5 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Shadow"
-include(":app")
+include(":composeApp")
 include(":shadow")

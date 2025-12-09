@@ -1,17 +1,13 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
-
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.android.application)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.android.library)
-    id("maven-publish")
 }
 
-val publishVariantName = "release"
+val appId = "com.stetsiuk.shadow"
 
 kotlin {
     androidTarget {
@@ -23,7 +19,12 @@ kotlin {
     listOf(
         iosArm64(),
         iosSimulatorArm64()
-    )
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
 
     sourceSets {
         androidMain.dependencies {
@@ -32,6 +33,8 @@ kotlin {
         }
         iosMain.dependencies {}
         commonMain.dependencies {
+
+            implementation(project(":shadow"))
 
             // Compose
             implementation(compose.runtime)
@@ -48,14 +51,17 @@ kotlin {
 }
 
 android {
-    namespace = "com.stetsiuk.shadow"
+    namespace = appId
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
+        applicationId = appId
         minSdk = libs.versions.android.minSdk.get().toInt()
+        compileSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
     packaging {
         resources {
@@ -63,9 +69,8 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
-
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -73,30 +78,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    publishing {
-        singleVariant(publishVariantName) {
-            withSourcesJar()
-            withJavadocJar()
-        }
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
 dependencies {
     debugImplementation(compose.uiTooling)
-}
-
-publishing {
-    publications {
-        register<MavenPublication>(publishVariantName) {
-            afterEvaluate {
-                from(components[publishVariantName])
-                groupId = "com.github.vasyl-stetsiuk"
-                artifactId = "shadow"
-                version = "1.0.2"
-            }
-        }
-    }
 }
