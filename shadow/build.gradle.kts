@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.android.library)
-    id("maven-publish")
+    alias(libs.plugins.mavenPublish)
 }
 
 kotlin {
@@ -73,23 +73,42 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 dependencies {
     debugImplementation(compose.uiTooling)
 }
 
-publishing {
-    publications {
-        withType<MavenPublication> {
-            groupId = "com.github.vasyl-stetsiuk"
-            version = "1.0.5"
+mavenPublishing {
+    coordinates("dev.stetsiuk", "shadow", "1.0.0")
+
+    pom {
+        name.set("Shadow")
+        description.set("A lightweight Jetpack Compose Multiplatform library providing customizable shadow effects — supporting both solid colors and shaders (like gradients).")
+        url.set("https://github.com/vasyl-stetsiuk/shadow")
+
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("vasyl-stetsiuk")
+                name.set("Vasyl Stetsiuk")
+                email.set("stecyuk.vasil@gmail.com")
+            }
+        }
+
+        scm {
+            url.set("https://github.com/vasyl-stetsiuk/shadow")
+            connection.set("scm:git:git://github.com/vasyl-stetsiuk/shadow.git")
+            developerConnection.set("scm:git:ssh://git@github.com/vasyl-stetsiuk/shadow.git")
         }
     }
+
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 }

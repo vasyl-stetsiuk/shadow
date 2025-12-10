@@ -25,6 +25,7 @@ out/
 
 # Local configuration
 local.properties
+gradle.properties
 
 # Eclipse project files
 .classpath
