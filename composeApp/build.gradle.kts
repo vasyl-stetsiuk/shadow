@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val appId = "com.stetsiuk.shadow"
+val appId = "dev.stetsiuk.shadow"
 
 kotlin {
     androidTarget {

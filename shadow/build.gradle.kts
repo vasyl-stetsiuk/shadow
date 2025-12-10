@@ -45,7 +45,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.stetsiuk.shadow"
+    namespace = "dev.stetsiuk.shadow"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
