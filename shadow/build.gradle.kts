@@ -45,7 +45,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.stetsiuk.shadow"
+    namespace = "dev.stetsiuk.compose.shadow"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -80,35 +80,34 @@ dependencies {
 }
 
 mavenPublishing {
-    coordinates("dev.stetsiuk", "shadow", "1.0.0")
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates("dev.stetsiuk", "compose-shadow", "1.0.0")
 
     pom {
-        name.set("Shadow")
-        description.set("A lightweight Jetpack Compose Multiplatform library providing customizable shadow effects — supporting both solid colors and shaders (like gradients).")
-        url.set("https://github.com/vasyl-stetsiuk/shadow")
-
+        name = "Shadow"
+        description = "A lightweight Jetpack Compose Multiplatform library providing customizable shadow effects — supporting both solid colors and shaders (like gradients)."
+        url = "https://github.com/vasyl-stetsiuk/shadow"
+        inceptionYear = "2024"
         licenses {
             license {
-                name.set("The Apache License, Version 2.0")
-                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
-
         developers {
             developer {
-                id.set("vasyl-stetsiuk")
-                name.set("Vasyl Stetsiuk")
-                email.set("stecyuk.vasil@gmail.com")
+                id = "vasyl-stetsiuk"
+                name = "Vasyl Stetsiuk"
+                email = "stecyuk.vasil@gmail.com"
             }
         }
-
         scm {
-            url.set("https://github.com/vasyl-stetsiuk/shadow")
-            connection.set("scm:git:git://github.com/vasyl-stetsiuk/shadow.git")
-            developerConnection.set("scm:git:ssh://git@github.com/vasyl-stetsiuk/shadow.git")
+            url = "https://github.com/vasyl-stetsiuk/shadow"
+            connection = "scm:git:git://github.com/vasyl-stetsiuk/shadow.git"
+            developerConnection = "scm:git:ssh://git@github.com/vasyl-stetsiuk/shadow.git"
         }
     }
-
-    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
 }
