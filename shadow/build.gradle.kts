@@ -1,6 +1,7 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -19,13 +20,37 @@ kotlin {
         }
     }
 
+    jvm("desktop") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
+    js(IR) {
+        browser()
+    }
+
+    wasmJs {
+        browser()
+    }
+
     iosArm64()
+    iosX64()
     iosSimulatorArm64()
 
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+        }
+        val desktopMain by getting {
+            dependencies {}
+        }
+        val jsMain by getting {
+            dependencies {}
+        }
+        val wasmJsMain by getting {
+            dependencies {}
         }
         iosMain.dependencies {}
         commonMain.dependencies {

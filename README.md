@@ -6,12 +6,13 @@ Easily apply smooth, dynamic shadows to your composables with simple `Modifier` 
 
 ## 🎯 Platform Support
 
-| Platform | Status |
-|----------|--------|
-| Android  | ✅ Supported |
-| iOS      | ✅ Supported |
-| Desktop  | 🚧 Planned |
-| Web      | 🚧 Planned |
+| Platform | Targets | Status |
+|----------|---------|--------|
+| Android  | `androidTarget` | ✅ Supported |
+| iOS      | `iosArm64`, `iosX64`, `iosSimulatorArm64` | ✅ Supported |
+| Desktop  | `jvm` (Windows, macOS, Linux) | ✅ Supported |
+| Web      | `js` (JavaScript/Canvas) | ✅ Supported |
+| Web      | `wasmJs` (WebAssembly) | ✅ Supported |
 
 ---
 
