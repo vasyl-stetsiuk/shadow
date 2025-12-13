@@ -1,4 +1,4 @@
-package dev.stetsiuk.shadow
+package dev.stetsiuk.compose.shadow
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -115,7 +115,9 @@ fun ShadowBundlePreview() {
                                 spread = 4.dp
                             ),
                             ShadowParams(
-                                fillStyle = ShadowFillStyle.WithColor(Color.Black.copy(0.5f)),
+                                fillStyle = ShadowFillStyle.WithColor(
+                                    Color.Black.copy(0.5f)
+                                ),
                                 shape = shape,
                                 translationY = 16.dp,
                                 translationX = 0.dp,

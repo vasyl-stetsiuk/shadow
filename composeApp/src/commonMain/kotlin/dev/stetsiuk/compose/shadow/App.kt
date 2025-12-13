@@ -1,4 +1,4 @@
-package dev.stetsiuk.shadow
+package dev.stetsiuk.compose.shadow
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.stetsiuk.shadow.ui.theme.ShadowTheme
+import dev.stetsiuk.compose.shadow.ui.theme.ShadowTheme
 
 @Composable
 fun App() {

@@ -1,4 +1,4 @@
-package dev.stetsiuk.shadow
+package dev.stetsiuk.compose.shadow
 
 import android.graphics.BlurMaskFilter
 import androidx.compose.ui.graphics.Paint

@@ -1,4 +1,4 @@
-package dev.stetsiuk.shadow
+package dev.stetsiuk.compose.shadow
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

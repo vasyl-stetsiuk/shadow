@@ -1,4 +1,4 @@
-package dev.stetsiuk.shadow.ui.theme
+package dev.stetsiuk.compose.shadow.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

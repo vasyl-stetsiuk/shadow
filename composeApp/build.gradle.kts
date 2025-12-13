@@ -7,8 +7,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val appId = "dev.stetsiuk.shadow"
-
 kotlin {
     androidTarget {
         compilerOptions {
@@ -51,11 +49,11 @@ kotlin {
 }
 
 android {
-    namespace = appId
+    namespace = "dev.stetsiuk.compose.shadow"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = appId
+        applicationId = "dev.stetsiuk.compose.shadow.sample"
         minSdk = 26 // libs.versions.android.minSdk.get().toInt()
         compileSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
