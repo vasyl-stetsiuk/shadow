@@ -1,4 +1,4 @@
-package com.stetsiuk.shadow
+package dev.stetsiuk.shadow
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind

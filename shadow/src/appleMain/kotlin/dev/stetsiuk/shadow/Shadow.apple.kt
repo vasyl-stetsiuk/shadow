@@ -1,4 +1,4 @@
-package com.stetsiuk.shadow
+package dev.stetsiuk.shadow
 
 import androidx.compose.ui.graphics.Paint
 import org.jetbrains.skia.FilterBlurMode

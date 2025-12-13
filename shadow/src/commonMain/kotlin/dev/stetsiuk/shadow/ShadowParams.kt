@@ -1,4 +1,4 @@
-package com.stetsiuk.shadow
+package dev.stetsiuk.shadow
 
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp

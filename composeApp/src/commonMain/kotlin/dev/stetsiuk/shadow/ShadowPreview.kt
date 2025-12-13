@@ -1,4 +1,4 @@
-package com.stetsiuk.shadow
+package dev.stetsiuk.shadow
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring

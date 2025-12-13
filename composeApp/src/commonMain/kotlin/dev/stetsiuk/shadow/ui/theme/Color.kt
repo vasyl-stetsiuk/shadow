@@ -1,4 +1,4 @@
-package com.stetsiuk.shadow.ui.theme
+package dev.stetsiuk.shadow.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
