@@ -23,43 +23,68 @@ Easily apply smooth, dynamic shadows to your composables with simple `Modifier` 
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.stetsiuk/compose-shadow.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.stetsiuk/compose-shadow)
 
+### Kotlin Multiplatform Projects
+
 Add the dependency to your `build.gradle.kts`:
 
-### Kotlin Multiplatform
 ```kotlin
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("dev.stetsiuk:compose-shadow:1.0.0")
+            implementation("dev.stetsiuk:compose-shadow:1.0.1")
         }
     }
 }
 ```
 
-### Android (Kotlin DSL)
+The Gradle plugin will automatically select the correct platform-specific artifact for each target.
+
+### Platform-Specific Projects
+
+If you're working on a single-platform project (non-KMP), you can use platform-specific artifacts:
+
+#### Android Only
 ```kotlin
 dependencies {
-    implementation("dev.stetsiuk:compose-shadow:1.0.0")
+    implementation("dev.stetsiuk:compose-shadow-android:1.0.1")
 }
 ```
 
-### Android (Groovy DSL)
-```groovy
+#### Desktop Only (JVM)
+```kotlin
 dependencies {
-    implementation 'dev.stetsiuk:compose-shadow:1.0.0'
+    implementation("dev.stetsiuk:compose-shadow-desktop:1.0.1")
 }
 ```
 
-### Version Catalog
+#### iOS (for shared iOS code)
+```kotlin
+dependencies {
+    implementation("dev.stetsiuk:compose-shadow-iosarm64:1.0.1")        // For devices
+    implementation("dev.stetsiuk:compose-shadow-iosx64:1.0.1")          // For Intel simulators
+    implementation("dev.stetsiuk:compose-shadow-iossimulatorarm64:1.0.1") // For M1/M2 simulators
+}
+```
+
+#### Web
+```kotlin
+dependencies {
+    implementation("dev.stetsiuk:compose-shadow-js:1.0.1")      // JavaScript
+    implementation("dev.stetsiuk:compose-shadow-wasm-js:1.0.1") // WebAssembly
+}
+```
+
+### Using Version Catalog
+
 ```toml
 [versions]
-compose-shadow = "1.0.0"
+compose-shadow = "1.0.1"
 
 [libraries]
 compose-shadow = { module = "dev.stetsiuk:compose-shadow", version.ref = "compose-shadow" }
 ```
 
-Then use in your `build.gradle.kts`:
+Then in your `build.gradle.kts`:
 ```kotlin
 kotlin {
     sourceSets {
