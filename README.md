@@ -1,8 +1,17 @@
 # 🌑 Shadow
 
-A lightweight Jetpack Compose library providing customizable shadow effects — supporting both **solid colors** and **shaders (like gradients)**.
+A lightweight **Compose Multiplatform** library providing customizable shadow effects — supporting both **solid colors** and **shaders (like gradients)**.
 
 Easily apply smooth, dynamic shadows to your composables with simple `Modifier` or `DrawScope` extensions.
+
+## 🎯 Platform Support
+
+| Platform | Status |
+|----------|--------|
+| Android  | ✅ Supported |
+| iOS      | ✅ Supported |
+| Desktop  | 🚧 Planned |
+| Web      | 🚧 Planned |
 
 ---
 
@@ -11,26 +20,54 @@ Easily apply smooth, dynamic shadows to your composables with simple `Modifier` 
 
 ## 📦 Installation
 
-### Step 1: Add JitPack to your `settings.gradle`
+[![Maven Central](https://img.shields.io/maven-central/v/dev.stetsiuk/compose-shadow.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.stetsiuk/compose-shadow)
 
+Add the dependency to your `build.gradle.kts`:
+
+### Kotlin Multiplatform
 ```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://jitpack.io")
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation("dev.stetsiuk:compose-shadow:1.0.0")
+        }
     }
 }
 ```
 
-### Step 2: Add the following to your `build.gradle`:
-
+### Android (Kotlin DSL)
 ```kotlin
 dependencies {
-    implementation("com.github.vasyl-stetsiuk:shadow:'latest_version'")
+    implementation("dev.stetsiuk:compose-shadow:1.0.0")
 }
 ```
-[![](https://jitpack.io/v/vasyl-stetsiuk/shadow.svg)](https://jitpack.io/#vasyl-stetsiuk/shadow)
+
+### Android (Groovy DSL)
+```groovy
+dependencies {
+    implementation 'dev.stetsiuk:compose-shadow:1.0.0'
+}
+```
+
+### Version Catalog
+```toml
+[versions]
+compose-shadow = "1.0.0"
+
+[libraries]
+compose-shadow = { module = "dev.stetsiuk:compose-shadow", version.ref = "compose-shadow" }
+```
+
+Then use in your `build.gradle.kts`:
+```kotlin
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.compose.shadow)
+        }
+    }
+}
+```
 
 ## 🚀 Usage
 
