@@ -109,7 +109,7 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates("dev.stetsiuk", "compose-shadow", "1.0.0")
+    coordinates("dev.stetsiuk", "compose-shadow", "1.0.1")
 
     pom {
         name = "Shadow"
